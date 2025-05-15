@@ -1,0 +1,24 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+    <p class="copyright">
+        © {currentYear} Sujan Maharjan. All rights reserved.
+    </p>
+</footer>
+
+<style>
+    .site-footer {
+        background-color: var(--bg-secondary);
+        color: var(--text-secondary);
+        padding: 1rem 0;
+        margin-top: auto; /* Pushes footer to the bottom if content is short */
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+    }
+
+    .copyright {
+        font-size: 0.9rem;
+    }
+</style>

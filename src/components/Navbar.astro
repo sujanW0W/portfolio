@@ -1,0 +1,315 @@
+---
+// src/components/Navbar.astro
+
+const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about/", label: "About" },
+    { href: "/projects/", label: "Projects" },
+    { href: "/contact/", label: "Contact" },
+];
+
+// We'll use the 'iconName' to decide which SVG to render
+const socialLinks = [
+    {
+        href: "https://github.com/sujanW0W",
+        label: "GitHub",
+        icon: "fa-github",
+    },
+    {
+        href: "https://www.linkedin.com/in/sujan-maharjan-490766215/",
+        label: "LinkedIn",
+        icon: "fa-linkedin",
+    },
+    {
+        href: "https://x.com/sujan_wow",
+        label: "X (Twitter)",
+        icon: "fa-x-twitter",
+    },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header-wrapper">
+    <div class="container site-header">
+        <a href="/" class="nav-logo" aria-label="Back to homepage">
+            Sujan Maharjan
+        </a>
+        <nav class="main-navigation" aria-label="Main navigation">
+            <ul class="nav-page-links">
+                {
+                    navLinks.map((link) => (
+                        <li>
+                            <a
+                                href={link.href}
+                                class:list={[
+                                    "nav-link",
+                                    {
+                                        active:
+                                            link.href === currentPath ||
+                                            (link.href !== "/" &&
+                                                currentPath.startsWith(
+                                                    link.href
+                                                )),
+                                    },
+                                ]}
+                                aria-current={
+                                    link.href === currentPath ? "page" : false
+                                }
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <ul class="nav-social-links" aria-label="Social media profiles">
+                {
+                    socialLinks.map((link) => (
+                        <li>
+                            <a
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="social-icon-link"
+                                aria-label={link.label}
+                                title={link.label}
+                            >
+                                <div>
+                                    <i class={`fa-brands ${link.icon} fa-lg`} />
+                                </div>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+            <!-- Optional: <ThemeToggle client:idle /> -->
+        </div>
+
+        <button
+            class="mobile-nav-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+            aria-controls="main-navigation-mobile"
+        >
+            <span class="sr-only">Open main menu</span>
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Placeholder for mobile menu structure that gets toggled -->
+    <!-- <div id="main-navigation-mobile" class="mobile-nav-menu"> ... </div> -->
+</header>
+
+<script>
+    // Basic Mobile Menu Toggle (Example, needs more robust implementation)
+    // For a production site, you'd likely use an Astro island component for this.
+    const toggleButton = document.querySelector(".mobile-nav-toggle");
+    const mainNav = document.querySelector(".main-navigation");
+    const socialNavInActions = document.querySelector(
+        ".nav-actions .nav-social-links"
+    ); // More specific selector
+
+    if (toggleButton && mainNav) {
+        // Removed socialNavInActions from this initial check as it might be optional
+        toggleButton.addEventListener("click", () => {
+            const isExpanded =
+                toggleButton.getAttribute("aria-expanded") === "true" || false;
+            toggleButton.setAttribute("aria-expanded", String(!isExpanded));
+            mainNav.classList.toggle("is-open");
+
+            // If you want social links to also be part of the mobile dropdown:
+            // Option 1: They are part of .main-navigation structure in mobile view (CSS change)
+            // Option 2: Toggle them separately if they remain in .nav-actions
+            if (socialNavInActions) {
+                // socialNavInActions.classList.toggle('is-open-too'); // Example class
+            }
+            // A common pattern is to have a single mobile menu div that contains both page links and social links,
+            // and this div is what gets toggled. The current structure separates them.
+        });
+    }
+</script>
+
+<style>
+    .site-header-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-secondary);
+        box-shadow: 0 2px 10px var(--shadow-color);
+        z-index: 1000;
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+    }
+
+    .site-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--text-headings);
+        text-decoration: none;
+        flex-shrink: 0;
+    }
+    .nav-logo:hover {
+        color: var(--accent-primary);
+    }
+
+    .main-navigation {
+        /* Desktop: Page links take space, can be centered or left-aligned */
+        /* margin: 0 auto; /* To center page links if logo/actions are on sides */
+    }
+
+    .nav-page-links {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.5rem 0;
+        position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--text-primary);
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--accent-primary);
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+    .nav-link.active {
+        font-weight: bold;
+        color: var(--accent-primary);
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .nav-social-links {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .social-icon-link {
+        color: var(--text-secondary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .social-icon-link:hover,
+    .social-icon-link:focus {
+        color: var(--accent-primary);
+    }
+    .social-icon-link .icon {
+        /* General styling for icons if needed */
+        transition: transform 0.2s ease-in-out;
+    }
+    .social-icon-link:hover .icon {
+        transform: scale(1.1);
+    }
+
+    .mobile-nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        padding: 0.5rem;
+        margin-left: 1rem; /* Space from social icons if they are visible */
+    }
+    .mobile-nav-toggle .icon {
+        /* For the menu icon itself */
+        display: block;
+    }
+
+    /* Mobile Responsiveness for Navbar */
+    @media (max-width: 768px) {
+        .main-navigation {
+            display: none; /* Hidden by default, toggled by JS */
+            /* Styles for when it's open (is-open class) */
+        }
+        .main-navigation.is-open {
+            display: flex; /* Or block, depending on layout */
+            position: absolute;
+            top: var(--header-height); /* Position below the header */
+            left: 0;
+            right: 0;
+            background-color: var(
+                --bg-secondary
+            ); /* Or a slightly different shade */
+            flex-direction: column;
+            align-items: stretch; /* Make links full-width */
+            padding: 1rem 0; /* Padding inside the dropdown */
+            box-shadow: 0 4px 6px var(--shadow-color);
+            z-index: 999; /* Ensure it's above content but below the fixed header */
+        }
+        .main-navigation.is-open .nav-page-links {
+            flex-direction: column;
+            width: 100%;
+            gap: 0; /* Remove gap, use padding on links */
+        }
+        .main-navigation.is-open .nav-page-links li {
+            width: 100%;
+        }
+        .main-navigation.is-open .nav-link {
+            display: block; /* Make links take full width */
+            padding: 0.75rem var(--container-padding); /* Padding for touch targets */
+            text-align: center; /* Or left */
+        }
+        .main-navigation.is-open .nav-link::after {
+            display: none; /* Optionally hide underline effect in mobile menu */
+        }
+
+        /* Decide how to handle .nav-actions (social links) on mobile */
+        /* Option A: Hide them too if they are part of the toggled menu */
+        /* .nav-actions { display: none; } */
+        /* .nav-actions.is-open { display: flex; ...styles for mobile social links... } */
+
+        /* Option B: Keep social links visible on mobile (if space allows) */
+        /* .nav-actions { ... } */
+
+        .mobile-nav-toggle {
+            display: block; /* Show the toggle button */
+        }
+    }
+</style>

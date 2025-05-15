@@ -1,0 +1,82 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css"; // Import global styles
+
+export interface Props {
+    title: string;
+    description?: string;
+    pageClass?: string; // Optional class for page-specific styling
+    // Add other props like image for social sharing if needed
+}
+
+const {
+    title,
+    description = "My Creative Portfolio Website", // Default description
+    pageClass,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/profile.png" />
+
+        <title>{title} | Portfolio</title>
+        <meta name="description" content={description} />
+
+        <!-- Preconnect to Google Fonts (if you use them) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code&display=swap"
+            rel="stylesheet"
+        />
+        <!-- Add Font Awesome if you plan to use it for icons, or use SVGs -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+
+        <!-- Astro will inject page-specific head elements here -->
+        <slot name="head" />
+    </head>
+    <body class:list={[pageClass]}>
+        <a href="#main-content" class="skip-link sr-only"
+            >Skip to main content</a
+        >
+        <Navbar />
+        <main id="main-content">
+            <slot />
+            <!-- This is where your page content will go -->
+        </main>
+        <Footer />
+
+        <style is:global>
+            /* Styles defined in global.css are already global,
+         but you can add more specific global styles here if needed,
+         or styles for elements directly in this layout. */
+            .skip-link:focus {
+                /* Make skip link visible on focus */
+                position: static;
+                width: auto;
+                height: auto;
+                margin: 0;
+                overflow: visible;
+                clip: auto;
+                white-space: normal;
+                padding: 0.5em;
+                background-color: var(--accent-primary);
+                color: var(--bg-primary);
+                text-decoration: none;
+                border-radius: 3px;
+                z-index: 9999;
+            }
+        </style>
+    </body>
+</html>

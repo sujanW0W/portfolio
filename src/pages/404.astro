@@ -1,0 +1,258 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="404 - Page Not Found" pageClass="not-found-page">
+    <div class="container content-404">
+        <div class="glitch-wrapper">
+            <h1 class="error-code" aria-label="404 Error">404</h1>
+        </div>
+        <h2 class="error-message">Oops! It looks like you're lost.</h2>
+        <p class="error-description">
+            The page you were looking for couldn't be found. It might have been
+            moved, deleted, or perhaps you mistyped the address.
+        </p>
+        <div class="error-actions">
+            <a href="/" class="cta-button">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-home"
+                    ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path><polyline points="9 22 9 12 15 12 15 22"
+                    ></polyline></svg
+                >
+                Go to Homepage
+            </a>
+            <a href="/projects/" class="secondary-link">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-grid"
+                    ><rect x="3" y="3" width="7" height="7"></rect><rect
+                        x="14"
+                        y="3"
+                        width="7"
+                        height="7"></rect><rect
+                        x="3"
+                        y="14"
+                        width="7"
+                        height="7"></rect><rect
+                        x="14"
+                        y="14"
+                        width="7"
+                        height="7"></rect></svg
+                >
+                View Projects
+            </a>
+        </div>
+    </div>
+</BaseLayout>
+
+<style>
+    /* Ensure .container is already defined globally or define it here if not */
+    /* .container {
+    width: 90%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+  } */
+
+    .content-404 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(80vh - var(--header-height)); /* Adjust as needed */
+        text-align: center;
+        padding: 2rem var(--container-padding);
+    }
+
+    .glitch-wrapper {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .error-code {
+        font-size: clamp(6rem, 20vw, 12rem); /* Responsive font size */
+        font-weight: 700;
+        color: var(--accent-primary);
+        font-family: var(
+            --font-monospace,
+            monospace
+        ); /* Use monospace for a techy feel */
+        line-height: 1;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+        user-select: none;
+    }
+
+    /* Creative Glitch Effect for "404" */
+    .error-code::before,
+    .error-code::after {
+        content: attr(aria-label);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: var(--bg-primary); /* Match page background */
+    }
+
+    .error-code::before {
+        left: 2px;
+        text-shadow: -2px 0 var(--accent-secondary);
+        animation: glitch-before 2.5s infinite linear alternate-reverse;
+        clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    }
+
+    .error-code::after {
+        left: -2px;
+        text-shadow:
+            -2px 0 var(--accent-hover),
+            2px 2px var(--accent-secondary);
+        animation: glitch-after 2.5s infinite linear alternate-reverse;
+        clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    }
+
+    @keyframes glitch-before {
+        0%,
+        5% {
+            clip-path: polygon(0 45%, 100% 45%, 100% 55%, 0 55%);
+        }
+        10%,
+        15% {
+            clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%);
+        }
+        20%,
+        25% {
+            clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%);
+        }
+        30%,
+        35% {
+            clip-path: polygon(0 30%, 100% 30%, 100% 40%, 0 40%);
+        }
+        40%,
+        45% {
+            clip-path: polygon(0 55%, 100% 55%, 100% 65%, 0 65%);
+        }
+        50%,
+        100% {
+            clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+        } /* Hide */
+    }
+
+    @keyframes glitch-after {
+        0%,
+        5% {
+            clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%);
+        }
+        10%,
+        15% {
+            clip-path: polygon(0 75%, 100% 75%, 100% 85%, 0 85%);
+        }
+        20%,
+        25% {
+            clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
+        }
+        30%,
+        35% {
+            clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%);
+        }
+        40%,
+        45% {
+            clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%);
+        }
+        50%,
+        100% {
+            clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+        } /* Hide */
+    }
+
+    .error-message {
+        font-size: clamp(1.5rem, 5vw, 2.25rem);
+        color: var(--text-headings);
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+    }
+
+    .error-description {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+    }
+
+    .error-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .error-actions .icon {
+        margin-right: 0.5em;
+        vertical-align: middle; /* Better alignment with text */
+    }
+
+    /* Re-using .cta-button style from index.astro (or define it in global.css) */
+    .cta-button {
+        display: inline-flex; /* For aligning icon and text */
+        align-items: center;
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+        padding: 0.7rem 1.5rem;
+        border-radius: 5px;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+            background-color 0.2s ease,
+            transform 0.2s ease;
+        border: 2px solid transparent;
+    }
+
+    .cta-button:hover {
+        background-color: var(--accent-hover);
+        transform: translateY(-2px);
+        text-decoration: none; /* Remove underline from global 'a:hover' */
+    }
+
+    .secondary-link {
+        display: inline-flex; /* For aligning icon and text */
+        align-items: center;
+        color: var(--accent-primary);
+        padding: 0.7rem 1.5rem;
+        border-radius: 5px;
+        font-weight: 500;
+        text-decoration: none;
+        border: 2px solid var(--accent-primary);
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .secondary-link:hover {
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+        transform: translateY(-2px);
+        text-decoration: none; /* Remove underline from global 'a:hover' */
+    }
+</style>

@@ -1,0 +1,238 @@
+---
+// src/pages/about.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const skills = [
+    { name: "HTML/CSS", level: "Expert" },
+    {
+        name: "JavaScript",
+        level: "Proficient",
+        tools: ["Nodejs", "React", "Nextjs"],
+    },
+    {
+        name: "Python",
+        level: "Proficient",
+        tools: ["Django", "Flask", "Pandas", "Numpy", "Matplotlib"],
+    },
+    {
+        name: "Machine Learning",
+        level: "Amateur",
+        tools: ["Scikit-learn", "Pytorch"],
+    },
+    {
+        name: "SQL",
+        level: "Amateur",
+        tools: ["PostgreSQL", "MySQL", "MSSQL"],
+    },
+    {
+        name: "Collaboration Tools",
+        level: "Proficient",
+        tools: ["Git", "Jira"],
+    },
+];
+---
+
+<BaseLayout
+    title="About Me"
+    description="Learn more about my background, skills, and passion/"
+>
+    <div class="container page-container">
+        <header class="page-header">
+            <h1>A Little Bit About Me</h1>
+            <p class="subtitle">
+                Driven by curiosity and a passion for crafting engaging digital
+                experiences.
+            </p>
+        </header>
+
+        <section class="about-content">
+            <div class="bio">
+                <h2>My Journey</h2>
+                <p>
+                    Hello! I'm Sujan Maharjan, a Graduate Student at North
+                    Dakota State University. With about a couple of professional
+                    experience in web development, I have developed skills and
+                    experiences in building meaningful software applications. An
+                    AI-Enthusiast, especially Machine Learning, looking for
+                    working on research projects that adds value to the digial
+                    engineering world.
+                </p>
+                <p>
+                    I believe in continuous learning and am always exploring new
+                    technologies and methodologies to enhance my skillset. When
+                    I'm not coding, you might find me playing Soccer, Cricket,
+                    or even E-Sports games. I love hiking, trekking, visiting
+                    new places, taking photographs, and trying new cuisines.
+                </p>
+                <p>
+                    My goal is to learn and keep-up with the fast-growing AI
+                    technologies and building AI powered software applications
+                    that solves real-world problems.
+                </p>
+            </div>
+
+            <aside class="skills-section">
+                <h2>Core Skills</h2>
+                <ul class="skills-list">
+                    {
+                        skills.map((skill) =>
+                            skill.tools ? (
+                                <li>
+                                    <strong>{skill.name}</strong>:{" "}
+                                    {skill.tools.map((tool, index) => (
+                                        <span>
+                                            {index ? ", " : ""}
+                                            {tool}
+                                        </span>
+                                    ))}
+                                </li>
+                            ) : (
+                                <li>
+                                    <strong>{skill.name}</strong>
+                                    {/* <span class="skill-level">{skill.level}</span> */}
+                                </li>
+                            )
+                        )
+                    }
+                </ul>
+                <p class="skills-note">
+                    Always eager to learn and expand my toolkit!
+                </p>
+            </aside>
+        </section>
+
+        <section class="call-to-action">
+            <h2>Let's Create Something Amazing</h2>
+            <p>
+                I'm always open to discussing new projects, creative ideas, or
+                opportunities to be part of something meaningful.
+            </p>
+            <a href="/contact/" class="cta-button">Get In Touch</a>
+        </section>
+    </div>
+</BaseLayout>
+
+<style>
+    .page-container {
+        padding-top: 2rem; /* Additional padding from main's default */
+        padding-bottom: 3rem;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.8rem;
+        color: var(--text-headings);
+    }
+
+    .page-header .subtitle {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 700px;
+        margin: 0.5rem auto 0;
+    }
+
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+        .about-content {
+            grid-template-columns: 2fr 1fr; /* Bio takes more space */
+        }
+    }
+
+    .bio h2,
+    .skills-section h2 {
+        font-size: 1.75rem;
+        color: var(--accent-primary);
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-secondary);
+        padding-bottom: 0.5rem;
+        display: inline-block;
+    }
+
+    .bio p {
+        margin-bottom: 1.25rem;
+        line-height: 1.7;
+    }
+
+    .skills-section {
+        background-color: var(--bg-secondary);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px var(--shadow-color);
+    }
+
+    .skills-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .skills-list li {
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+        color: var(--text-primary);
+    }
+
+    .skills-list strong {
+        color: var(--text-headings);
+    }
+
+    .skill-level {
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+
+    .skills-note {
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        text-align: center;
+    }
+
+    .call-to-action {
+        text-align: center;
+        background-color: var(--bg-tertiary);
+        padding: 2.5rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+    }
+
+    .call-to-action h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    .call-to-action p {
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    /* Re-using .cta-button style, ensure it's defined globally or copy from index/404 */
+    .cta-button {
+        display: inline-block;
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+        padding: 0.8rem 1.8rem;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition:
+            background-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+        background-color: var(--accent-hover);
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+</style>

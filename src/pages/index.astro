@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Home" description="Welcome to my creative portfolio.">
+    <div class="container">
+        <section class="hero">
+            <h1>Hello, I'm Sujan Maharjan</h1>
+            <p class="tagline">
+                A Graduate Student at North Dakota State University passionate
+                about AI - Machine Learning.
+            </p>
+            <a href="/projects/" class="cta-button">View My Work</a>
+        </section>
+
+        <section class="featured-work">
+            <h2>Featured Projects</h2>
+            <!-- You'll populate this with project cards later -->
+            <div class="project-grid">
+                <p>Project cards will go here...</p>
+            </div>
+        </section>
+    </div>
+</BaseLayout>
+
+<style>
+    .hero {
+        min-height: calc(60vh - var(--header-height)); /* Example height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 3rem 0;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-headings);
+    }
+
+    .tagline {
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: var(--accent-primary);
+        color: var(--bg-primary); /* Or a very light color like #fff */
+        padding: 0.8rem 1.8rem;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition:
+            background-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+        background-color: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    .featured-work {
+        padding: 3rem 0;
+        text-align: center;
+    }
+
+    .featured-work h2 {
+        margin-bottom: 2rem;
+    }
+
+    .project-grid {
+        /* Basic styling for now */
+        border: 1px dashed var(--border-color);
+        padding: 2rem;
+        color: var(--text-secondary);
+    }
+
+    @media (min-width: 768px) {
+        .hero h1 {
+            font-size: 4rem;
+        }
+        .tagline {
+            font-size: 1.75rem;
+        }
+    }
+</style>

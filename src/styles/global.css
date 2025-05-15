@@ -1,0 +1,121 @@
+:root {
+    --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-monospace: "Fira Code", "Consolas", "Monaco", "Andale Mono",
+        "Ubuntu Mono", monospace;
+
+    --bg-primary: #121212; /* Very dark (almost black) main background */
+    --bg-secondary: #1e1e1e; /* Slightly lighter for cards, sections */
+    --bg-tertiary: #2a2a2a; /* For interactive elements or subtle borders */
+
+    --text-primary: #e0e0e0; /* Light gray for main text */
+    --text-secondary: #a0a0a0; /* Muted gray for less important text */
+    --text-headings: #ffffff; /* Pure white for headings for emphasis */
+
+    --accent-primary: #00aeff; /* A vibrant blue - choose your own! */
+    --accent-secondary: #0077b3; /* A darker shade of the accent */
+    --accent-hover: #33c1ff;
+
+    --border-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+
+    --container-padding: 2rem;
+    --container-max-width: 1100px;
+    --header-height: 70px; /* Example, adjust as needed */
+}
+
+/* Basic Reset & Global Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px; /* Base font size */
+    scroll-behavior: smooth;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+}
+
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1; /* Ensures footer is pushed down */
+    padding-top: calc(var(--header-height) + 1rem); /* Space for fixed header */
+    padding-bottom: 2rem;
+}
+
+.container {
+    width: 90%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-headings);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.75rem;
+}
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover,
+a:focus {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* Utility class for screen readers only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
