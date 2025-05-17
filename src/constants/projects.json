@@ -1,0 +1,43 @@
+{
+    "projects": [
+    {
+        "slug": "medical-chat",
+        "title": "Medical Chatbot using Multi-Agentic RAG",
+        "description":
+            "A medical chatbot powered by multi-agentic RAG with web-search capability that answers medical queries.",
+        "tags": [
+            "Multi-Agentic RAG",
+            "Web Search",
+            "LLM",
+            "LangGraph",
+            "Vector Database"
+        ],
+        "imageUrl": "/assets/project-images/medical-chatbot.svg",
+        "github": "https://github.com/sujanW0W/Medical-Chatbot"
+    },
+    {
+        "slug": "image-inpainting",
+        "title": "Image Inpainting using GAN",
+        "description":
+            "A system that makes use of GAN to restore corrupted images and restore patches in the images.",
+        "tags": ["GAN", "Python", "Nodejs"],
+        "imageUrl": "/assets/project-images/gan-diagram.svg",
+        "github": "https://github.com/sujanW0W/MajorProject"
+    },
+    {
+        "slug": "home-decor-marketplace",
+        "title": "Home Decor Marketplace with Recommendation System",
+        "description":
+            "A home decor marketplace built using MERN stack with a recommendation system implemented using Collaborative and Content-based Filtering.",
+        "tags": [
+            "Collaborative Filtering",
+            "Content-based Filtering",
+            "React",
+            "Nodejs",
+            "MongoDB"
+        ],
+        "imageUrl": "/assets/project-images/recommendation-system.png",
+        "github": "https://github.com/sujanW0W/MinorProject"
+    }
+]
+}

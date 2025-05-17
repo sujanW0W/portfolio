@@ -1,5 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+import projectsData from "../constants/projects.json";
+
+const featuredProjects = ["RAG", "GAN"];
+
+const projects = projectsData.projects.filter((project) =>
+    featuredProjects.find((name) => project.title.includes(name))
+);
 ---
 
 <BaseLayout title="Home" description="Welcome to my creative portfolio.">
@@ -15,9 +24,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <section class="featured-work">
             <h2>Featured Projects</h2>
-            <!-- You'll populate this with project cards later -->
             <div class="project-grid">
-                <p>Project cards will go here...</p>
+                {
+                    projects.length > 0 ? (
+                        projects.map((project) => (
+                            <ProjectCard
+                                title={project.title}
+                                description={project.description}
+                                tags={project.tags}
+                                imageUrl={project.imageUrl}
+                                slug={project.slug}
+                                github={project.github}
+                            />
+                        ))
+                    ) : (
+                        <p>
+                            No projects to display at the moment. Check back
+                            soon!
+                        </p>
+                    )
+                }
             </div>
         </section>
     </div>
@@ -66,7 +92,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .featured-work {
         padding: 3rem 0;
-        text-align: center;
     }
 
     .featured-work h2 {
@@ -78,6 +103,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         border: 1px dashed var(--border-color);
         padding: 2rem;
         color: var(--text-secondary);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
     }
 
     @media (min-width: 768px) {
