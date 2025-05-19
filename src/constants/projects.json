@@ -16,6 +16,22 @@
         "github": "https://github.com/sujanW0W/Medical-Chatbot"
     },
     {
+        "slug": "finger-sign-detection",
+        "title": "Finger Sign Detection using CNN",
+        "description": "A CNN model that classifies the finger signs (signs representing numbers) into either of the classes ranging from 0 to 5.",
+        "tags": ["CNN", "Classification", "Deep Learning", "Supervised Learning", "Pytorch"],
+        "imageUrl": "/assets/project-images/fingersign.png",
+        "github": "https://github.com/sujanW0W/finger-sign-detection-CNN"
+    },
+    {
+        "slug": "mnist-classificaion",
+        "title": "MNIST classification using MLP from Scratch",
+        "description": "A Multi-Layered Perceptron model that classifies MNIST dataset. The model uses Cross Entropy loss for evaluation loss and Stocastic Gradient Descent (SGD) for optimization. Also, ReLU and Softmax as activation functions.",
+        "tags": ["MNIST Classification", "MLP", "SGD", "Cross Entropy Loss", "Backpropagation", "ReLU", "Softmax Regression", "Deep Learning"],
+        "imageUrl": "/assets/project-images/mnist.png",
+        "github": "https://github.com/sujanW0W/MNIST_classification"
+    },
+    {
         "slug": "image-inpainting",
         "title": "Image Inpainting using GAN",
         "description":

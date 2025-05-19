@@ -4,7 +4,7 @@ import ProjectCard from "../components/ProjectCard.astro";
 
 import projectsData from "../constants/projects.json";
 
-const featuredProjects = ["RAG", "GAN"];
+const featuredProjects = ["RAG", "CNN"];
 
 const projects = projectsData.projects.filter((project) =>
     featuredProjects.find((name) => project.title.includes(name))
