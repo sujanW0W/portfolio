@@ -68,9 +68,13 @@ const { projects } = projectsData;
 
     .projects-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 2rem;
     }
 
-    /* Styles for the placeholder card. Replace with ProjectCard styles later. */
+    @media (min-width: 768px) {
+        .projects-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
 </style>

@@ -104,7 +104,7 @@ const projects = projectsData.projects.filter((project) =>
         padding: 2rem;
         color: var(--text-secondary);
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 2rem;
     }
 
@@ -114,6 +114,10 @@ const projects = projectsData.projects.filter((project) =>
         }
         .tagline {
             font-size: 1.75rem;
+        }
+
+        .project-grid {
+            grid-template-columns: 1fr 1fr;
         }
     }
 </style>
